@@ -43,7 +43,6 @@ on init
 
     # Mix device-specific information into the entropy pool
     copy /proc/cmdline /dev/urandom
-    copy /system/etc/prop.default /dev/urandom
     copy /default.prop /dev/urandom
 
     symlink /system/bin /bin
@@ -763,8 +762,3 @@ service flash_recovery /system/bin/install-recovery.sh
     class main
     oneshot
     disabled
-
-# update recovery if enabled
-on property:persist.sys.recovery_update=true
-    start flash_recovery
-
